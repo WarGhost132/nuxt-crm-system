@@ -18,6 +18,7 @@
 
     --border: #202937;
     --input: #202937;
+    --sidebar: #0e172a;
 
     --primary: #a252c8;
     --primary-foreground: #f5f5f5;
@@ -43,6 +44,6 @@
   }
   body {
     @apply bg-background text-foreground text-base;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
   }
 }
