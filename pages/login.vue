@@ -8,6 +8,11 @@ const emailRef = ref('')
 const passwordRef = ref('')
 const nameRef = ref('')
 
+const isLoadingStore = useIsLoadingStore()
+const router = useRouter()
+
+// TODO: Login and register
+
 </script>
 
 <template>
