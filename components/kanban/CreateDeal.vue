@@ -41,6 +41,7 @@ const { mutate, isPending } = useMutation({
     onSuccess(data) {
         props.refetch && props.refetch();
         handleReset();
+        isOpenForm.value = false;
     },
 });
 
