@@ -16,6 +16,7 @@
     "@pinia/nuxt": "^0.9.0",
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-query": "^5.62.9",
+    "@vee-validate/nuxt": "^4.15.0",
     "@vueuse/core": "^12.2.0",
     "appwrite": "^16.1.0",
     "class-variance-authority": "^0.7.1",
@@ -45,6 +46,7 @@
     "google-fonts": "^1.0.0",
     "module": "^1.2.5",
     "nuxi": "^3.17.2",
-    "nuxt-icon": "^1.0.0-beta.7"
+    "nuxt-icon": "^1.0.0-beta.7",
+    "prettier": "3.4.2"
   }
 }
