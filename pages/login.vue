@@ -1,53 +1,48 @@
 <script setup lang="ts">
-import { account } from "~/lib/appwrite";
-import { v4 as uuid } from "uuid";
+import { account } from '~/lib/appwrite'
+import { v4 as uuid } from 'uuid'
 
 useSeoMeta({
-  title: "Login | CRM System",
-});
+  title: 'Login | CRM System',
+})
 
-const emailRef = ref("");
-const passwordRef = ref("");
-const nameRef = ref("");
+const emailRef = ref('')
+const passwordRef = ref('')
+const nameRef = ref('')
 
-const isLoadingStore = useIsLoadingStore();
-const authStore = useAuthStore();
-const router = useRouter();
+const isLoadingStore = useIsLoadingStore()
+const authStore = useAuthStore()
+const router = useRouter()
 
 const login = async () => {
-  isLoadingStore.set(true);
+  isLoadingStore.set(true)
 
-  await account.createEmailPasswordSession(emailRef.value, passwordRef.value);
+  await account.createEmailPasswordSession(emailRef.value, passwordRef.value)
 
-  const response = await account.get();
+  const response = await account.get()
 
   if (response) {
     authStore.set({
       email: response.email,
       name: response.name,
       status: response.status,
-    });
+    })
   }
 
-  emailRef.value = "";
-  passwordRef.value = "";
-  nameRef.value = "";
+  emailRef.value = ''
+  passwordRef.value = ''
+  nameRef.value = ''
 
-  await router.push("/");
+  await router.push('/')
 
-  isLoadingStore.set(false);
-};
+  isLoadingStore.set(false)
+}
 
 const register = async () => {
-  await account.create(
-    uuid(),
-    emailRef.value,
-    passwordRef.value,
-    nameRef.value,
-  );
+  await account.create(uuid(), emailRef.value, passwordRef.value, nameRef.value)
 
-  await login();
-};
+  await login()
+}
 </script>
 
 <template>

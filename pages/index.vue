@@ -1,52 +1,52 @@
 <script setup lang="ts">
-import { generateColumnStyle } from "@/components/kanban/generate-gradient";
-import { useKanbanQuery } from "@/components/kanban/useKanbanQuery";
-import { convertCurrency } from "@/lib/convertCurrency";
-import { useMutation } from "@tanstack/vue-query";
-import dayjs from "dayjs";
-import { COLLECTION_DEALS, DB_ID } from "~/app.constants";
-import type { ICard, IColumn } from "~/components/kanban/kanban.types";
-import { useDealSlideStore } from "~/store/deal-slide.store";
-import type { EnumStatus } from "~/types/deals.types";
-import { DB } from "~/lib/appwrite";
+import { generateColumnStyle } from '@/components/kanban/generate-gradient'
+import { useKanbanQuery } from '@/components/kanban/useKanbanQuery'
+import { convertCurrency } from '@/lib/convertCurrency'
+import { useMutation } from '@tanstack/vue-query'
+import dayjs from 'dayjs'
+import { COLLECTION_DEALS, DB_ID } from '~/app.constants'
+import type { ICard, IColumn } from '~/components/kanban/kanban.types'
+import { useDealSlideStore } from '~/store/deal-slide.store'
+import type { EnumStatus } from '~/types/deals.types'
+import { DB } from '~/lib/appwrite'
 
 useSeoMeta({
-  title: "Home | CRM System",
-});
+  title: 'Home | CRM System',
+})
 
-const dragCardRef = ref<ICard | null>(null);
-const sourceColumnRef = ref<IColumn | null>(null);
-const { data, isLoading, refetch } = useKanbanQuery();
-const store = useDealSlideStore();
+const dragCardRef = ref<ICard | null>(null)
+const sourceColumnRef = ref<IColumn | null>(null)
+const { data, isLoading, refetch } = useKanbanQuery()
+const store = useDealSlideStore()
 
 type TypeMutationVariables = {
-  docId: string;
-  status?: EnumStatus;
-};
+  docId: string
+  status?: EnumStatus
+}
 
 const { mutate } = useMutation({
-  mutationKey: ["move card"],
+  mutationKey: ['move card'],
   mutationFn: ({ docId, status }: TypeMutationVariables) =>
     DB.updateDocument(DB_ID, COLLECTION_DEALS, docId, {
       status,
     }),
   onSuccess: () => {
-    refetch();
+    refetch()
   },
-});
+})
 
 function handleDragStart(card: ICard, column: IColumn) {
-  dragCardRef.value = card;
-  sourceColumnRef.value = column;
+  dragCardRef.value = card
+  sourceColumnRef.value = column
 }
 
 function handleDragOver(event: DragEvent) {
-  event.preventDefault();
+  event.preventDefault()
 }
 
 function handleDrop(targetColumn: IColumn) {
   if (dragCardRef.value && sourceColumnRef.value) {
-    mutate({ docId: dragCardRef.value.id, status: targetColumn.id });
+    mutate({ docId: dragCardRef.value.id, status: targetColumn.id })
   }
 }
 </script>
@@ -91,7 +91,7 @@ function handleDrop(targetColumn: IColumn) {
                 {{ card.companyName }}</UiCardContent
               >
               <UiCardFooter>
-                {{ dayjs(card.$createdAt).format("DD MMMM YYYY") }}
+                {{ dayjs(card.$createdAt).format('DD MMMM YYYY') }}
               </UiCardFooter>
             </UiCard>
           </div>

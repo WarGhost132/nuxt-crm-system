@@ -36,4 +36,10 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-12-26',
+
+  vite: {
+    optimizeDeps: {
+      include: ['@headlessui/vue'],
+    },
+  },
 })
