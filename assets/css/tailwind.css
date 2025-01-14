@@ -44,6 +44,6 @@
   }
   body {
     @apply bg-background text-foreground text-base;
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
   }
 }
