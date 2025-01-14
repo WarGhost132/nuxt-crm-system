@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
-import { useDealSlideStore } from '~/store/deal-slide.store'
 import { convertCurrency } from '~/lib/convertCurrency'
+import dayjs from 'dayjs'
 
 const store = useDealSlideStore()
 </script>
@@ -15,12 +14,10 @@ const store = useDealSlideStore()
       </h2>
     </KanbanSlideoverLabel>
     <KanbanSlideoverLabel label-text="Сумма">
-      <h2>
-        {{ convertCurrency(store.card?.price || 0) }}
-      </h2>
+      {{ convertCurrency(store.card?.price || 0) }}
     </KanbanSlideoverLabel>
     <KanbanSlideoverLabel label-text="Статус">
-      <UiBadge>
+      <UiBadge variant="outline">
         {{ store.card?.status }}
       </UiBadge>
     </KanbanSlideoverLabel>

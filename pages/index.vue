@@ -16,6 +16,7 @@ useSeoMeta({
 const dragCardRef = ref<ICard | null>(null)
 const sourceColumnRef = ref<IColumn | null>(null)
 const { data, isLoading, refetch } = useKanbanQuery()
+const store = useDealSlideStore()
 
 type TypeMutationVariables = {
   docId: string
@@ -79,7 +80,7 @@ function handleDrop(targetColumn: IColumn) {
               draggable="true"
               @dragstart="() => handleDragStart(card, column)"
             >
-              <UiCardHeader role="button">
+              <UiCardHeader role="button" @click="store.set(card)">
                 <UiCardTitle>
                   {{ card.name }}
                 </UiCardTitle>
@@ -98,6 +99,7 @@ function handleDrop(targetColumn: IColumn) {
           </div>
         </div>
       </div>
+      <KanbanSlideover />
     </div>
   </div>
 </template>
